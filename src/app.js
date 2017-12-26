@@ -5,7 +5,7 @@ import configureStore from './store/configureStore';
 import AppRouter from './routers/AppRouter';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import { addExpense } from './actions/expenses';
+import { startSetExpenses } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import getVisisbleExpenses from './selectors/expenses';
 import './firebase/firebase';
@@ -17,6 +17,9 @@ const jsx = (
     <AppRouter />
   </Provider>
 );
+ReactDOM.render(<p>loading...</p>, document.getElementById('app')); 
 
+store.dispatch(startSetExpenses()).then(()=>{
+  ReactDOM.render(jsx, document.getElementById('app')); 
+});
 
-ReactDOM.render(jsx, document.getElementById('app')); 
